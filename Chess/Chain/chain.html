@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chain</title>
+	
+	
+
+
+    <script type="text/javascript" src="paper-core.js"></script>
+    <script type="text/javascript" src="paper-full.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+		var points = 80;
+
+		// The distance between the points:
+		var length = 15;
+
+		var path = new Path({
+			//strokeColor: '#E4141B',
+			strokeColor: '#1482e4',
+			strokeWidth: 20,
+			strokeCap: 'round'
+		});
+
+		var start = view.center / [10, 1];
+		for (var i = 0; i < points; i++)
+			path.add(start + new Point(i * length, 0));
+
+		function onMouseMove(event) {
+			path.firstSegment.point = event.point;
+			for (var i = 0; i < points - 1; i++) {
+				var segment = path.segments[i];
+				var nextSegment = segment.next;
+				var vector = segment.point - nextSegment.point;
+				vector.length = length;
+				nextSegment.point = segment.point - vector;
+			}
+			path.smooth({ type: 'continuous' });
+		}
+
+		function onMouseDown(event) {
+			path.fullySelected = true;
+			path.strokeColor = '#e08285';
+		}
+
+		function onMouseUp(event) {
+			path.fullySelected = false;
+			//path.strokeColor = '#e4141b';
+			path.strokeColor = '#1482e4';
+		}
+	</script>
+	
+	<style>
+		#myCanvas {
+			border: 1px solid black;
+			background: white;
+			height:96vh;
+			width:96%;
+			margin-left: 2%;
+			margin-top:2vh;
+			box-shadow: 2px 2px 2px black;
+		}
+	</style>
+
+</head>
+<body>
+	 <canvas id="myCanvas"></canvas>
+</body>
+</html>

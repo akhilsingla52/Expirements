@@ -1,0 +1,1 @@
+angular.module('MyApp', ['ui.calendar', 'ui.bootstrap', 'LocalStorageModule'])

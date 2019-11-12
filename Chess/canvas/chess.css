@@ -1,0 +1,8 @@
+canvas {
+    display: flex;
+    margin-top: 20%;
+    border: 10px solid #663300;
+    box-shadow: 0px 0px 50px #663300;
+    background-color: 	#fffdd0;
+    margin: auto;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resource Schedule</title>
+
+    <link rel="stylesheet" href="assets/vendors/jquery-ui/themes/smoothness/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link href="/assets/vendors/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="assets/vendors/fullcalendar/dist/fullcalendar.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body ng-app="MyApp">
+
+    <div ng-controller="MainController as MainCtrl">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    Resources
+                    <ul class="list-group">
+                        <li class="list-group-item" data-event-title="Tarun Kumar" data-event-id="123" id="123" class="fc-title" items-drag>
+                            Tarun Kumar
+                            <a class="float-right" ng-click="MainCtrl.deleteSchedules(123)">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </li>
+                        <li class="list-group-item" data-event-title="Shubham Tripathi" data-event-id="456" id="456" class="fc-title" items-drag>
+                            Shubham Tripathi
+                            <a class="float-right" ng-click="MainCtrl.deleteSchedules(456)">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </li>
+                        <li class="list-group-item" data-event-title="Akhil Singla" data-event-id="789" id="789" class="fc-title" items-drag>
+                            Akhil Singla
+                            <a class="float-right" ng-click="MainCtrl.deleteSchedules(789)">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <div ui-calendar="MainCtrl.uiConfig.calendar" id="calendar" ng-model="MainCtrl.eventSource"></div>
+                </div>
+            </div>
+
+            <div id="eventHourModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 id="modalTitle" class="modal-title"></h4>
+                            <button type="button" class="close" data-dismiss="modal">X</button>
+                        </div>
+                        <div id="modalBody" class="modal-body">
+                            <form>
+                                <div class="form-group" ng-hide="true">
+                                    <label for="example-text-input" class="col-2 col-form-label">ID</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" name="id" ng-model="MainCtrl.selectedEvent.orginal_id">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-text-input" class="col-2 col-form-label">Hours</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="number" name="hours" ng-model="MainCtrl.selectedEvent.hours">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-primary" type="button" value="Update" ng-click="MainCtrl.updateHours()">
+                                    <input class="btn btn-danger" type="button" value="Remove" ng-click="MainCtrl.removeEvent()">
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/vendors/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/assets/vendors/angular/angular.min.js"></script>
+    <script src="/assets/vendors/moment/moment.js"></script>
+    <script src="/assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/assets/vendors/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="/assets/vendors/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/assets/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="/assets/vendors/angular-ui-calendar/calendar.min.js"></script>
+    <script src="/assets/vendors/angular-local-storage/dist/angular-local-storage.min.js"></script>
+
+    <script src="/app/app.module.js"></script>
+
+    <script src="/app/controller/main.controller.js"></script>
+
+    <script src="/app/directive/draggable.directive.js"></script>
+
+</body>
+
+</html>
